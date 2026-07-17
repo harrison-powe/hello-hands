@@ -64,10 +64,16 @@ servo re-homes its center to 2048, then recalibrate.
 → [`scripts/fix_base_encoder.py`](scripts/fix_base_encoder.py) — small,
 heavily-commented, runnable. The header documents the bug in full.
 
+The committed follower calibration is the post-fix state — its `shoulder_pan`
+homing_offset (-2014) sits off the ±2047 rail — while the leader's railed base
+offset (-2047) is a benign torque-off artifact, since the leader is never driven
+under power.
+
 ## Repository layout
 
 ```
 hello-hands/
+├── .gitignore
 ├── README.md
 ├── LICENSE                     # MIT
 ├── scripts/

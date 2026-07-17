@@ -4,6 +4,13 @@
 #  One-key-center the SO-101 base joint (shoulder_pan) on a Feetech STS3215.
 # ============================================================================
 #
+#  PROVENANCE
+#  ----------
+#  Reconstructed, cleaned-up script written from the documented fix below --
+#  NOT the exact original one-off used on the bench (that script was not
+#  preserved on disk). The imports were checked against LeRobot 0.6.0, but this
+#  file has not itself been re-run on hardware.
+#
 #  THE BUG
 #  -------
 #  The Feetech STS3215 has a 12-bit absolute magnetic encoder: raw positions
