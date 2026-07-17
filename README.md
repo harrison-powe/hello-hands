@@ -11,8 +11,6 @@ checkpoints live here — those are published to the Hugging Face Hub (see
 
 ## Status
 
-_As of 2026-07-17:_
-
 - ✅ **Both arms assembled and calibrated** — leader and follower, 6 joints each
   (Feetech STS3215 servos). Calibration is committed under
   [`calibration/`](calibration/).
@@ -33,7 +31,7 @@ is actually complete.
 - [ ] **Install cameras** — _in progress_
 - [ ] **Collect demonstrations** — teleoperate while recording camera + joint
       data into a `LeRobotDataset` — _next_
-- [ ] **Fine-tune π0** with LoRA on a rented GPU (via openpi)
+- [ ] **Fine-tune π0** with LoRA on a rented GPU (via openpi) — imitation learning (behavior cloning), not RL
 - [ ] **Deploy** the trained policy behind an openpi policy server
 - [ ] **Iterate on data quality** — more/better demonstrations, retrain
 
@@ -50,7 +48,7 @@ Exact commands for the completed and in-progress steps are in
 - 6× Feetech STS3215 servos per arm (12-bit absolute encoders).
 - Cameras at 640×480 (installation in progress).
 
-## Debugging highlight: the base-joint encoder
+## The base-joint encoder bug
 
 The follower's base joint (`shoulder_pan`) would drive into a hard stop under
 torque. Root cause: its encoder zero landed on the **0 / 4096 wraparound seam**
@@ -93,21 +91,6 @@ exists yet:**
 
 - **Demonstration dataset** — _TODO:_ `https://huggingface.co/datasets/<hf-username>/<dataset-name>`
 - **Fine-tuned π0 policy** — _TODO:_ `https://huggingface.co/<hf-username>/<model-name>`
-
-## Naming (getting it right)
-
-- **LeRobot** is Hugging Face's robotics library (hardware I/O, calibration,
-  teleoperation, dataset recording, training).
-- **π0** and **openpi** are Physical Intelligence's — π0 is the flagship
-  vision-language-action model; openpi is the open-source release used to
-  fine-tune and serve it.
-- **SmolVLA** is Hugging Face's own vision-language-action model (a separate
-  thing from π0).
-- Fine-tuning π0 here is **imitation learning (behavior cloning)** on recorded
-  demonstrations — **not reinforcement learning**.
-- **Teleoperation is mechanical mirroring**: the leader's joint angles are
-  copied to the follower. No model and no cameras are involved in teleop —
-  cameras and policies enter only at the data-collection and fine-tuning steps.
 
 ## Upstream
 
