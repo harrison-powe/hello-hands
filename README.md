@@ -16,7 +16,7 @@ checkpoints live here — those are published to the Hugging Face Hub (see
   [`calibration/`](calibration/).
 - ✅ **Teleoperation works on all 6 joints.** Along the way the base joint
   (`shoulder_pan`) had an encoder **wraparound bug** — diagnosed and fixed; see
-  [the debugging highlight](#debugging-highlight-the-base-joint-encoder).
+  [the base-joint encoder bug](#the-base-joint-encoder-bug).
 - 🔧 **Currently installing cameras** (640×480).
 - ⬜ **Data collection and π0 fine-tuning are next — not started.**
 
