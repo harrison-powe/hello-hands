@@ -1,0 +1,43 @@
+# ─── Python ───────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ─── Virtual environments ─────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ─── Secrets / credentials ────────────────────────────────────────────
+.env
+.env.*
+*token*
+*.key
+*.pem
+
+# ─── Large / generated artifacts ──────────────────────────────────────
+# These live on the Hugging Face Hub, not in git.
+data/
+outputs/
+checkpoints/
+*.safetensors
+*.mp4
+*.parquet
+
+# ─── OS / editor cruft ────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Intentionally NOT ignored ────────────────────────────────────────
+# Calibration JSONs in calibration/ are tracked as reproducibility
+# evidence. Do NOT add a blanket `*.json` rule.
