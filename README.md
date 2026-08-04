@@ -23,14 +23,16 @@ checkpoints live here — those are published to the Hugging Face Hub (see
   views — [dataset on the Hub](https://huggingface.co/datasets/harrison-powe/hello-hands-pick-place_20260721_163414).
 - ✅ **SmolVLA fine-tuned locally** on that dataset and deployed autonomously
   via `lerobot-rollout` (leader disconnected, RTC inference).
-- 🔧 **The policy approaches the correct object but fails the grasp** — the
-  task is not yet completed autonomously. Dataset #2 (rigid object, denser
-  start region) is the next pass.
+- 🔧 **The policy completes the task autonomously** — approaches, grasps, and
+  drops the object in the tray — roughly 75% of the time when the object
+  starts within a narrow region of the workspace, and is unreliable outside
+  it. The brittleness is a data-coverage limitation; dataset #2 (rigid
+  object, denser start region) targets it.
 - ⬜ **π0 fine-tuning via openpi — not started.**
 
-A fine-tuned policy now exists and pursues the right object, but the task is
-not yet completed autonomously and π0 is untouched; this README claims only
-what is actually complete.
+A fine-tuned policy completes the task autonomously within a narrow start
+region but is not yet robust across the workspace; π0 is untouched; this
+README claims only what is actually complete.
 
 ## The pipeline
 
@@ -42,7 +44,8 @@ what is actually complete.
       data into a
       [`LeRobotDataset`](https://huggingface.co/datasets/harrison-powe/hello-hands-pick-place_20260721_163414)
 - [x] **Validate the full loop locally** — fine-tune SmolVLA and deploy it
-      autonomously (approaches the object; grasp not yet reliable)
+      autonomously (completes the task within a narrow start region ~75% of
+      the time; not yet robust across the workspace)
 - [ ] **Fine-tune π0** with LoRA on a rented GPU (via openpi) — imitation learning (behavior cloning), not RL
 - [ ] **Deploy** the trained policy behind an openpi policy server
 - [ ] **Iterate on data quality** — more/better demonstrations, retrain —
