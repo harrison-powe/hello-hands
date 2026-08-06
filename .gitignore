@@ -26,13 +26,42 @@ ENV/
 *.pem
 
 # ─── Large / generated artifacts ──────────────────────────────────────
-# These live on the Hugging Face Hub, not in git.
+# These live on the Hugging Face Hub or on the training GPU, not in git.
+# GitHub hard-rejects any file over 100 MB; model weights and optimizer
+# state blow past that on their own (a single SmolVLA checkpoint here is
+# ~450 MB of weights plus ~900 MB of optimizer state).
 data/
 outputs/
+captured_images/
 checkpoints/
+wandb/
+
+# Model weights and training state, whatever the framework
 *.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+*.h5
+*.onnx
+*.gguf
+*.npz
+*.msgpack
+*.orbax-checkpoint-*
+
+# Recorded media and dataset shards
 *.mp4
+*.mkv
+*.avi
 *.parquet
+*.arrow
+
+# ─── Vendored upstream source ─────────────────────────────────────────
+# reference/ carries only the SO-101 additions to openpi, not copies of
+# openpi's own files. The full upstream config.py is 47 KB of someone
+# else's code; the excerpt in config_so101_additions.py is what belongs
+# here. Do not commit a whole vendored config.py.
+reference/config.py
 
 # ─── OS / editor cruft ────────────────────────────────────────────────
 .DS_Store
