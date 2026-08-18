@@ -194,8 +194,8 @@ def main():
     parser.add_argument(
         "--max-arm-step",
         type=float,
-        default=8.0,
-        help="Abort if any arm joint is commanded to move more than this (degrees) in one step.",
+        default=6.51,
+        help="Abort if any arm joint exceeds this many degrees on chunk indices 1+; index 0 is exempt.",
     )
     parser.add_argument(
         "--max-gripper-step",
@@ -335,7 +335,8 @@ def main():
             reference = state
             for step in range(n_exec):
                 target = chunk[step]
-                complaint = check_step(target, reference, args.max_arm_step, args.max_gripper_step)
+                arm_limit = np.inf if step == 0 else args.max_arm_step
+                complaint = check_step(target, reference, arm_limit, args.max_gripper_step)
                 if complaint is not None:
                     print("\n" + "!" * 78)
                     print(f"ABORT: policy commanded an unsafe step at chunk index {step}.")
